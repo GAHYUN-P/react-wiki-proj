@@ -2,6 +2,7 @@ import React from "react";
 
 function Comment(props) {
   console.log(props);
+  console.log(props);
   return (
     <>
       <div style={{ display: "flex" }}>
