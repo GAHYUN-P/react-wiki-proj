@@ -5,11 +5,13 @@ import BasicModal from "../components/Modal";
 import Button from "@mui/material/Button";
 import Comment from "../components/Comments";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 function Detail() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  const comment_list = useSelector((state) => state.comment.list);
+  console.log(comment_list);
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [modify, setModify] = useState(true);
@@ -45,7 +47,10 @@ function Detail() {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
+    await axios.get("http://3.36.62.222/comment/1").then((res) => {
+      console.log(res);
+    });
     //axios로 처음에 받기
     if ((like && dislike) || (!like && !dislike)) {
       return 0;
@@ -59,7 +64,7 @@ function Detail() {
 
   const onValid = (data) => {
     console.log(data);
-    // dispatch(commentActions.addComment(data));
+    dispatch(commentActions.addComment(data));
   };
 
   return (
