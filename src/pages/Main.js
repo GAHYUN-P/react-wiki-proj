@@ -19,9 +19,10 @@ const Main = (props) => {
     React.useEffect(async () => {
         // dispatch(setProduct());
         await axios
-            .get("http://3.36.62.222/product", {}, {withCredentials: true})
+            .get("http://3.36.62.222/post/1", {}, {withCredentials: true})
             .then((response) => {
                 console.log(response)
+                console.log(response.data)
                 // setPost_List(dataFormat)
             });
     }, []);
