@@ -1,11 +1,131 @@
-import React from "react";
+import React, {useState, useEffect } from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
+import { useDispatch, useSelector } from 'react-redux'
+import { axiosInstance } from '../config'
+import { actionsCreators as postActions } from '../redux/modules/post'
+import moment from 'moment';
 
-function Write() {
+
+import { Grid, Text, Input, Button } from "../elements";
+
+const Write = (props) => {
+  ////
+
+  const dispatch = useDispatch()
+  const [postInfo, setPostInfo] = useState([])
+    
+    //eidt
+  // const id = props.match.params.id
+  // const is_edit = id ? true : false
+  // useEffect(() =>{
+
+  //     axiosInstance.get(`/product`, )
+  //     .then((res) =>{
+  //         setPostInfo(res.data)
+  //     })
+  //     .catch((err)=> console.log(err))
+  // },[])
+
+  const [title, setTitle] = useState(postInfo ? postInfo.title : ""); 
+  const [desc,setDesc] = useState(postInfo ? postInfo.content : "");
+  const [password,setPassword] = useState();
+  const [writer,setWriter] = useState();
+  const [category, setCategory] = React.useState("");
+
+  const handleChange = (event) => {
+    setCategory(event.target.value);
+  };
+
+  const addpost =() =>{
+      if( !title || !desc || !password || !writer || !category){
+          window.alert("빈 공간을 채워주세요!")
+          return ;
+      }
+      dispatch(postActions.add_Post({
+        title: title,
+        writer: writer,
+        category: category,
+        password: password,
+        desc: desc,
+      }))
+  }
+
   return (
-    <>
-      <h1>write</h1>
-    </>
+    <Grid width="80%" margin="auto">
+      <Grid padding="16px" margin="10px auto" is_flex="is_flex">
+        <Text bold="bold" size="36px">
+          게시글 작성
+        </Text>
+      </Grid>
+      <Grid width="100%" padding="16px" margin="10px auto">
+        <Input 
+        placeholder="제목을 입력해주세요."
+        _onChange={(e) => setTitle(e.target.value)}
+        value={title} />
+        <Grid is_flex width="100%">
+          <Grid padding="10px" is_flex="is_flex">
+            <Input 
+            width="100%"
+            placeholder="글쓴이" 
+            _onChange={(e) => setWriter(e.target.value)}
+            value={writer}/>
+          </Grid>
+          <Grid is_flex="is_flex" padding="0px">
+            <Input 
+            width="100%"
+            placeholder="비밀번호" 
+            _onChange={(e) => setPassword(e.target.value)}
+            value={password}/>
+          </Grid>
+          
+        </Grid>
+        <Grid width="80%" padding="10px">
+          <Box
+            sx={{
+              minWidth: 120,
+            }}
+          >
+            <FormControl fullWidth>
+              <InputLabel id="demo-simple-select-label">카테고리</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={category}
+                label="Category"
+                onChange={handleChange}
+              >
+                <MenuItem value={"Computer Science"}>Computer Science</MenuItem>
+                <MenuItem value={"JAVA"}>JAVA</MenuItem>
+                <MenuItem value={"JavaScript"}>JavaScript</MenuItem>
+                <MenuItem value={"React"}>React</MenuItem>
+                <MenuItem value={"Spring"}>Spring</MenuItem>
+                <MenuItem value={"기타"}>기타</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
+          
+          <Grid padding="10px" is_flex="is_flex" is_column="is_column">
+            <Input 
+            is_area="is_area" 
+            placeholder="내용을 입력해주세요."
+            _onChange={(e) => setDesc(e.target.value)}
+            value={desc} />
+            <Grid width="auto" padding="10px">
+              <Button width="80px" bg="#fff" _onClick={addpost}>등록하기</Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Grid>
   );
-}
+};
+
+Write.defaultProps = {
+  src: "",
+};
 
 export default Write;

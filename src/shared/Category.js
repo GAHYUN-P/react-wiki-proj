@@ -55,6 +55,12 @@ export default function Category() {
         >
           <ListItemText primary="Spring" />
         </ListItemButton>
+        <ListItemButton
+          selected={selectedIndex === 6}
+          onClick={(event) => handleListItemClick(event, 6)}
+        >
+          <ListItemText primary="기타" />
+        </ListItemButton>
       </List>
     </Box>
   );
