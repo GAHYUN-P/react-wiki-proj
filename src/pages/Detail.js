@@ -42,6 +42,10 @@ function Detail() {
     }
   }, []);
 
+  const handleComment = () => {
+    console.log("axios");
+  };
+
   return (
     <>
       <h1>{defaultState.title}</h1>
@@ -75,7 +79,7 @@ function Detail() {
         <label htmlFor="comment">댓글</label>
         <textarea id="comment" placeholder="댓글"></textarea>
         <input placeholder="작성자"></input>
-        <Button>작성</Button>
+        <Button onClick={handleComment}>작성</Button>
       </div>
       {/* 댓글창 */}
 
