@@ -55,17 +55,34 @@ const Write = (props) => {
   }
 
   return (
-    <Grid>
+    <Grid width="80%" margin="auto">
       <Grid padding="16px" margin="10px auto" is_flex="is_flex">
         <Text bold="bold" size="36px">
           게시글 작성
         </Text>
       </Grid>
-      <Grid width="50%" padding="16px" margin="10px auto">
+      <Grid width="100%" padding="16px" margin="10px auto">
         <Input 
         placeholder="제목을 입력해주세요."
         _onChange={(e) => setTitle(e.target.value)}
         value={title} />
+        <Grid is_flex width="100%">
+          <Grid padding="10px" is_flex="is_flex">
+            <Input 
+            width="100%"
+            placeholder="글쓴이" 
+            _onChange={(e) => setWriter(e.target.value)}
+            value={writer}/>
+          </Grid>
+          <Grid is_flex="is_flex" padding="0px">
+            <Input 
+            width="100%"
+            placeholder="비밀번호" 
+            _onChange={(e) => setPassword(e.target.value)}
+            value={password}/>
+          </Grid>
+          
+        </Grid>
         <Grid width="80%" padding="10px">
           <Box
             sx={{
@@ -81,29 +98,16 @@ const Write = (props) => {
                 label="Category"
                 onChange={handleChange}
               >
-                <MenuItem value={"의류"}>의류</MenuItem>
-                <MenuItem value={"전자기기"}>전자기기</MenuItem>
-                <MenuItem value={"장난감"}>장난감</MenuItem>
-                <MenuItem value={"가구"}>가구</MenuItem>
-                <MenuItem value={"취미생활"}>취미생활</MenuItem>
+                <MenuItem value={"Computer Science"}>Computer Science</MenuItem>
+                <MenuItem value={"JAVA"}>JAVA</MenuItem>
+                <MenuItem value={"JavaScript"}>JavaScript</MenuItem>
+                <MenuItem value={"React"}>React</MenuItem>
+                <MenuItem value={"Spring"}>Spring</MenuItem>
                 <MenuItem value={"기타"}>기타</MenuItem>
               </Select>
             </FormControl>
           </Box>
-          <Grid padding="10px" is_flex="is_flex" is_column="is_column">
-            <Input 
-            is_area="is_area" 
-            placeholder="비밀번호" 
-            _onChange={(e) => setPassword(e.target.value)}
-            value={password}/>
-          </Grid>
-          <Grid padding="10px" is_flex="is_flex" is_column="is_column">
-            <Input 
-            is_area="is_area" 
-            placeholder="글쓴이" 
-            _onChange={(e) => setWriter(e.target.value)}
-            value={writer}/>
-          </Grid>
+          
           <Grid padding="10px" is_flex="is_flex" is_column="is_column">
             <Input 
             is_area="is_area" 
