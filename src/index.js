@@ -19,13 +19,11 @@ const lightTheme = {
 };
 
 ReactDOM.render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <ThemeProvider theme={darkTheme}>
-        <App />
-      </ThemeProvider>
-    </React.StrictMode>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Provider>,
   document.getElementById("root")
 );
 
