@@ -8,7 +8,7 @@ const Header = (props) => {
 
     return (
         <React.Fragment>
-            <Grid position="fixed" BG_c="#F2F2F2" height="70px" width="100%">
+            <Grid z_index= "1" position="fixed" BG_c="#F2F2F2" height="70px" width="100%">
                 <Grid is_between padding="0px 15px 0px 0px">
                     <Grid>
                         <Image shape="imagePost" src={wikiwiki_logo}/>

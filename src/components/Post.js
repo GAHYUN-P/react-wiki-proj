@@ -12,10 +12,8 @@ import { useHistory } from "react-router-dom";
 const Post = (props) => {
 
    
-    const short_desc = props.desc.substring(0,50)
-    
-
     const new_desc = props.desc.substring(0,50) + ' ...';
+    const new_title = props.title.substring(0,10) + ' ...';
 
 
     const bull = (
@@ -53,7 +51,7 @@ const Post = (props) => {
                     {props.modifiedAt}
                 </Typography>
                 <Typography variant="h5" component="div">
-                    {props.title}
+                    {new_title}
                 </Typography>
                 <Typography
                     sx={{
