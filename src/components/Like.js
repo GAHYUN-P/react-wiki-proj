@@ -10,6 +10,7 @@ import axios from "axios";
 import { axiosInstance } from "../config";
 
 function Like(props) {
+  console.log(props)
   let id = props.id;
   const post = useSelector((state) => state.post);
 

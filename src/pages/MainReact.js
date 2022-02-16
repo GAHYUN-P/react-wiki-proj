@@ -19,7 +19,7 @@ const MainReact = (props) => {
     React.useEffect(async () => {
         // dispatch(setProduct());
         await axios
-            .get("http://3.36.62.222/", {}, {withCredentials: true})
+            .get("http://52.79.54.15/", {}, {withCredentials: true})
             .then((response) => {
                 console.log(response)
                 console.log(response.data)

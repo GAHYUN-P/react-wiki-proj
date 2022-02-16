@@ -79,7 +79,7 @@ const Post = (props) => {
                             좋아요{props.likes}
                         </Text>
                         <Text F_size="12px">
-                            댓글{props.comment_count}개
+                            댓글 {props.comment_count}개
                         </Text>
                     </Grid>
                 </CardContent>
