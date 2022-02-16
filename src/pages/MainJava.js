@@ -1,10 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import {Grid} from "../elements";
 
 import {useDispatch, useSelector} from "react-redux";
 
@@ -48,7 +45,7 @@ const MainJava = (props) => {
                     </Grid>
                     <Grid is_flex width="100%" padding="80px 0px 0px 20%">
                         {
-                            post_list.map((p, idx) => {
+                            new_post_list.map((p, idx) => {
 
                                 return (<Post {...p} key={p.post_id}></Post>)
 
