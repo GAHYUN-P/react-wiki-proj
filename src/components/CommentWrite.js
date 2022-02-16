@@ -7,8 +7,6 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 function CommentWrite(props) {
   let id = props.id;
   const dispatch = useDispatch();
-  const post = useSelector((state) => state.post.list);
-  console.log(...post);
   const {
     register,
     handleSubmit,
@@ -21,8 +19,12 @@ function CommentWrite(props) {
     },
   });
 
+  const comment = useSelector((state) => state.comment.list);
+
   const onValid = (data) => {
-    dispatch(commentActions.addCommentDB(id, ...data));
+    dispatch(
+      commentActions.addCommentDB(id, data.comment_desc, data.comment_writer)
+    );
   };
 
   return (
@@ -31,7 +33,7 @@ function CommentWrite(props) {
         <label htmlFor="comment">댓글</label>
         <input
           {...register("comment_desc", {
-            required: "입력해주세요",
+            required: "내용을 입력해주세요",
             minLength: {
               value: 10,
               message: "댓글은 최소 10자 이상이어야 합니다.",
@@ -40,7 +42,9 @@ function CommentWrite(props) {
           id="comment"
           placeholder="댓글"
         ></input>
-        <span>{errors?.comment_desc?.message}</span>
+        <span style={{ color: "red", fontSize: "10px" }}>
+          {errors?.comment_desc?.message}
+        </span>
         <input
           {...register("comment_writer", {
             required: "작성자를 입력해주세요",

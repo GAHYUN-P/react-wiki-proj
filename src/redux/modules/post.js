@@ -86,8 +86,7 @@ export default handleActions(
       }),
     [SET_ONE_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.post);
-        draft.list.push(action.payload.post);
+        draft.list = action.payload.post;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {
@@ -106,7 +105,6 @@ export default handleActions(
 );
 
 const actionCreators = {
-  add_Post,
   setPost,
   setOnePost,
   addPost,
