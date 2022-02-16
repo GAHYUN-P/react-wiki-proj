@@ -2,12 +2,6 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { axiosInstance } from "../../config";
 import axios from "axios";
-import {
-  FaRegThumbsDown,
-  FaRegThumbsUp,
-  FaThumbsDown,
-  FaThumbsUp,
-} from "react-icons/fa";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -111,7 +105,6 @@ export default handleActions(
 );
 
 const actionCreators = {
-  add_Post,
   setPost,
   setOnePost,
   addPost,
