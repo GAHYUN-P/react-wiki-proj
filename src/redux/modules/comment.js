@@ -53,13 +53,12 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(...action.payload.comment_list);
+        draft.list = action.payload.comment_list;
       }),
-
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.list.push(action.payload);
-        console.log(action.payload);
+        console.log(state);
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {

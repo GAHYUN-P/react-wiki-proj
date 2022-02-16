@@ -20,7 +20,6 @@ function CommentWrite(props) {
   });
 
   const comment = useSelector((state) => state.comment.list);
-  console.log(comment);
 
   const onValid = (data) => {
     dispatch(

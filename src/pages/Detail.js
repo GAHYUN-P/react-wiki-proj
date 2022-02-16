@@ -15,39 +15,14 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 
 function Detail(props) {
   let { id } = useParams();
+  const _comment = useSelector((state) => state.comment.list);
 
   const dispatch = useDispatch();
   const [post, setPost] = useState({});
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
   const [modify, setModify] = useState(true);
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
-  const comment = useSelector((state) => state.comment.list);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    setError,
-  } = useForm({
-    defaultValues: {
-      comment_writer: "",
-      comment_desc: "",
-    },
-  });
-
-  const handleLikeClick = () => {
-    setLike((prev) => !prev);
-    console.log(like);
-  };
-
-  const handleDislikeClick = () => {
-    setDislike((prev) => !prev);
-    console.log(dislike);
-  };
-
-  // 수정버튼 누르면 axios로 db에 전달.
   const handleModify = (data) => {
     setModify((prev) => !prev);
     if (modify === false) {
@@ -66,7 +41,7 @@ function Detail(props) {
         contributor: writer,
       });
     }
-  }; // axios로 db에 보내주기 desc, contributor
+  };
 
   const handleWriterChange = (e) => {
     setWriter(e.target.value);
@@ -83,16 +58,7 @@ function Detail(props) {
       dispatch(commentActions.setComment(res.data.comments));
       dispatch(postActions.setOnePost(res.data));
     });
-    //axios로 처음에 받기
-    if ((like && dislike) || (!like && !dislike)) {
-      return 0;
-      //axios로 0 보내주기
-    } else if (like === true && dislike === false) {
-      return 1;
-    } else {
-      return -1;
-    }
-  }, []);
+  }, [_comment]);
 
   return (
     <>
@@ -128,7 +94,7 @@ function Detail(props) {
       </div>
 
       <div>
-        <Like />
+        <Like id={id} />
       </div>
 
       <div>
@@ -136,13 +102,13 @@ function Detail(props) {
       </div>
 
       <div>
-        {comment.map((e, i) => {
+        {_comment.map((e, i) => {
           return <Comments key={i} {...e} />;
         })}
       </div>
 
       <div style={{ display: "flex", justifyContent: "right" }}>
-        <Button onClick={handleSubmit(handleModify)}>수정</Button>
+        <Button onClick={handleModify}>수정</Button>
         <BasicModal>삭제</BasicModal>
       </div>
     </>
