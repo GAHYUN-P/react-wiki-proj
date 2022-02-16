@@ -105,6 +105,7 @@ export default handleActions(
 );
 
 const actionCreators = {
+  add_Post,
   setPost,
   setOnePost,
   addPost,

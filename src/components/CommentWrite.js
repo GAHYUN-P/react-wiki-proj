@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
 
 function CommentWrite(props) {
-  let id = props.id;
+  console.log(props)
+  let id = props.props;
   const dispatch = useDispatch();
   const {
     register,

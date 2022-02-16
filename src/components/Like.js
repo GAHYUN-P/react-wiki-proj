@@ -11,6 +11,7 @@ import { axiosInstance } from "../config";
 import Stack from "@mui/material/Stack";
 
 function Like(props) {
+  console.log(props)
   let id = props.id;
   const post = useSelector((state) => state.post);
 

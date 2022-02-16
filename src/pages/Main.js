@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import * as React from "react";
 import { styled } from "@mui/material/styles";
+
+
 import { Grid } from "../elements";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -20,8 +22,8 @@ const Main = (props) => {
 
   React.useEffect(async () => {
     // dispatch(setProduct());
-    await axiosInstance
-      .get("/", {}, { withCredentials: true })
+    await axios
+      .get("http://52.79.54.15/", {}, { withCredentials: true })
       .then((response) => {
         setPost_List(response.data);
       });
@@ -29,9 +31,11 @@ const Main = (props) => {
 
   console.log(post_list);
 
+  
+
   return (
     <React.Fragment>
-      <Header />
+      <Header page="main"/>
       <Grid width="95%" margin="auto">
         <Grid is_flex>
           <Grid position="fixed" width="15%" height="100%" top="80px">

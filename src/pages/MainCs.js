@@ -20,7 +20,7 @@ const MainCs = (props) => {
     React.useEffect(async () => {
         // dispatch(setProduct());
         await axios
-            .get("http://3.36.62.222/", {}, {withCredentials: true})
+            .get("http://52.79.54.15/", {}, {withCredentials: true})
             .then((response) => {
                 console.log(response)
                 console.log(response.data)
@@ -40,7 +40,7 @@ const MainCs = (props) => {
 
     return (
         <React.Fragment>
-            <Header/>
+            <Header page="main"/>
             <Grid width="95%" margin="auto">
                 <Grid is_flex>
                     <Grid position="fixed" width="15%" height="100%" top="80px">
