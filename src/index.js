@@ -5,6 +5,7 @@ import App from "./shared/App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { ThemeProvider } from "styled-components";
+import { ConnectedRouter } from 'connected-react-router';
 import { Provider } from "react-redux";
 import store from "./redux/configureStore";
 

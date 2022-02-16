@@ -6,11 +6,21 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
+import styled from "styled-components";
+
+import {Grid, Text} from "../elements";
+
 import moment from "moment";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const Post = (props) => {
-    // console.log(props)
+
+    const new_desc = props
+        .desc
+        .substring(0, 50) + ' ...';
+    const new_title = props
+        .title
+        .substring(0, 10) + ' ...';
 
     const bull = (
         <Box
@@ -18,53 +28,69 @@ const Post = (props) => {
             sx={{
                 display: 'inline-block',
                 mx: '2px',
-                transform: 'scale(0.8)',
+                transform: 'scale(0.8)'
             }}>
             •
         </Box>
     );
 
     return (
-        <Card sx={{
-                width: 250,
-                margin: 2,
-            }}>
-            <CardContent>
-                <Typography
-                    sx={{
-                        fontSize: 10
-                    }}
-                    color="text.secondary"
-                    gutterBottom>
-                    마지막 업데이트
-                </Typography>
-                <Typography
-                    sx={{
-                        fontSize: 14
-                    }}
-                    color="text.secondary"
-                    gutterBottom>
-                    {props.modifiedAt}
-                </Typography>
-                <Typography variant="h5" component="div">
-                    {props.title}
-                </Typography>
-                <Typography
-                    sx={{
-                        mb: 1.5
-                    }}
-                    color="text.secondary">
-                    {props.writer}
-                </Typography>
-                <Typography variant="body2">
-                    {props.desc}
-                </Typography>
-            </CardContent>
-            <CardActions>
-                <Button size="small">자세히 보기</Button>
-            </CardActions>
-        </Card>
+        <Grid _onClick={()=>{window.location.href = `/detail/${props.post_id}`}}>
+            <Card
+                sx={{
+                    width: 250,
+                    margin: 2
+                }}>
+                <CardContent>
+                    <Typography
+                        sx={{
+                            fontSize: 10
+                        }}
+                        color="text.secondary"
+                        gutterBottom="true">
+                        마지막 업데이트
+                    </Typography>
+                    <Typography
+                        sx={{
+                            fontSize: 14
+                        }}
+                        color="text.secondary"
+                        gutterBottom="gutterBottom">
+                        {props.modifiedAt}
+                    </Typography>
+                    <Typography variant="h5" component="div">
+                        {new_title}
+                    </Typography>
+                    <Typography
+                        sx={{
+                            mb: 1.5
+                        }}
+                        color="text.secondary">
+                        {props.writer}
+                    </Typography>
+                    <Grid margin="0px 0px 10px 0px">
+                        <Typography variant="body2">
+                            {new_desc}
+                        </Typography>
+                    </Grid>
+                    <Hr/>
+                    <Grid is_between="is_between" margin="10px 0px 0px 0px">
+                        <Text F_size="12px">
+                            좋아요
+                        </Text>
+                        <Text F_size="12px">
+                            댓글{props.comment_count}개
+                        </Text>
+                    </Grid>
+                </CardContent>
+            </Card>
+        </Grid>
     );
 };
+
+const Hr = styled.hr `
+    border: 0;
+    border-top: 1px dashed #E65923;
+`;
 
 export default Post;

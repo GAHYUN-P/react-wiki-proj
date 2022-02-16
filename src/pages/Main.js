@@ -1,22 +1,23 @@
-import { useState } from "react";
+import {useState} from "react";
 import axios from "axios";
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Paper from "@mui/material/Paper";
-import Grid from "@mui/material/Grid";
+import {styled} from "@mui/material/styles";
+import {Grid} from "../elements";
 
-import { useDispatch, useSelector } from "react-redux";
-import { actionsCreators as cgActions } from "../redux/modules/category";
+import {useDispatch, useSelector} from "react-redux";
+import {actionsCreators as cgActions} from '../redux/modules/category'
+
 
 import Category from "../shared/Category";
 import Post from "../components/Post";
+import Header from "../shared/Header";
 
 const Main = (props) => {
   console.log(props);
 
   const dispatch = useDispatch();
   const [post_list, setPost_List] = useState([]);
+
 
   React.useEffect(async () => {
     // dispatch(setProduct());
@@ -29,71 +30,30 @@ const Main = (props) => {
 
   console.log(post_list);
 
-  const indexinfo = useSelector((state) => state.category.category);
-  console.log(indexinfo);
 
-  if (indexinfo !== "all") {
-    setPost_List(post_list.filter((p) => p.category === indexinfo));
-    console.log(post_list);
-  }
-
-  if (indexinfo === "all") {
     return (
-      <React.Fragment>
-        <Grid
-          style={{
-            margin: "50px 0px",
-            padding: "20px",
-          }}
-        >
-          <Box
-            sx={{
-              flexGrow: 1,
-            }}
-          >
-            <Grid container="container" spacing={2} columns={16}>
-              <Grid item="item" xs={3}>
-                <Category props={post_list} />
-              </Grid>
-              <Grid display="flex" flexWrap="wrap" item xs={13}>
-                {post_list.map((p, idx) => {
-                  return <Post {...p} key={p.post_id}></Post>;
-                })}
-              </Grid>
+        <React.Fragment>
+            <Header/>
+            <Grid width="95%" margin="auto">
+                <Grid is_flex>
+                    <Grid position="fixed" width="15%" height="100%" top="80px">
+                        <Category props={post_list}/>
+                    </Grid>
+                    <Grid is_flex width="100%" padding="80px 0px 0px 20%">
+                        {
+                            post_list.map((p, idx) => {
+
+                                return (<Post {...p} key={p.post_id}></Post>)
+
+                            })
+                        }
+                    </Grid>
+                </Grid>
+
             </Grid>
           </Box>
         </Grid>
       </React.Fragment>
     );
-  }
-
-  return (
-    <React.Fragment>
-      <Grid
-        style={{
-          margin: "50px 0px",
-          padding: "20px",
-        }}
-      >
-        <Box
-          sx={{
-            flexGrow: 1,
-          }}
-        >
-          <Grid container="container" spacing={2} columns={16}>
-            <Grid item="item" xs={3}>
-              <Category props={post_list} />
-            </Grid>
-            <Grid display="flex" flexWrap="wrap" item xs={13}>
-              {post_list.map((p, idx) => {
-                return <Post {...p} key={p.post_id}></Post>;
-              })}
-            </Grid>
-          </Grid>
-        </Box>
-      </Grid>
-    </React.Fragment>
-  );
-};
-
+  
 export default Main;

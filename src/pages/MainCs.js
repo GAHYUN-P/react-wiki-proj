@@ -1,16 +1,15 @@
 import {useState} from "react";
 import axios from "axios";
 import * as React from 'react';
-import {styled} from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import {Grid} from "../elements";
+
 
 import {useDispatch, useSelector} from "react-redux";
 
 
 import Category from "../shared/Category";
 import Post from "../components/Post";
+import Header from "../shared/Header";
 
 const MainCs = (props) => {
     // console.log(props)
@@ -41,28 +40,22 @@ const MainCs = (props) => {
 
     return (
         <React.Fragment>
-            <Grid style={{
-                    margin: "50px 0px",
-                    padding: "20px"
-                }}>
-              <Box sx={{
-                      flexGrow: 1
-                  }}>
-                  <Grid container="container" spacing={2} columns={16}>
-                      <Grid item="item" xs={3}>
-                          <Category/>
-                      </Grid>
-                      <Grid display="flex" flexWrap="wrap" item xs={13}>
-                          {
-                              new_post_list.map((p, idx) => {
-                                
-                                return (<Post {...p} key={p.post_id}></Post>) 
-                                  
-                              })
-                          }
-                      </Grid>
-                  </Grid>
-              </Box>
+            <Header/>
+            <Grid width="95%" margin="auto">
+                <Grid is_flex>
+                    <Grid position="fixed" width="15%" height="100%" top="80px">
+                        <Category props={post_list}/>
+                    </Grid>
+                    <Grid is_flex width="100%" padding="80px 0px 0px 20%">
+                        {
+                            new_post_list.map((p, idx) => {
+
+                                return (<Post {...p} key={p.post_id}></Post>)
+
+                            })
+                        }
+                    </Grid>
+                </Grid>
             </Grid>
         </React.Fragment>
     );
