@@ -1,5 +1,7 @@
 import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
+import axios from "axios";
+import { axiosInstance } from "../../config";
 
 const SET_COMMENT = "SET_COMMENT";
 const ADD_COMMENT = "ADD_COMMENT";
@@ -22,6 +24,21 @@ const initialState = {
   is_loading: false,
 };
 
+const addCommentDB = (post_id, comment, writer) => {
+  return function (dispatch, getState, { history }) {
+    // axiosInstance
+    //   .post(`/comment/${post_id}`, {
+    //     comment_writer: writer,
+    //     comment_desc: comment,
+    //   })
+    //   .then((res) => {
+    //     let time = new Date();
+    //     dispatch(addComment(post_id, comment));
+    //   });
+    dispatch(addComment(post_id, comment));
+  };
+};
+
 export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
@@ -31,7 +48,7 @@ export default handleActions(
 
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[action.payload.post_id].unshift(action.payload.comment);
+        console.log(action.payload);
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {
@@ -54,6 +71,7 @@ export default handleActions(
 const actionCreators = {
   setComment,
   addComment,
+  addCommentDB,
 };
 
 export { actionCreators };
