@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { axiosInstance } from "../config";
 import { actionCreators as postActions } from "../redux/modules/post";
 import Paper from "@mui/material/Paper";
+import Header from "../shared/Header";
 
 import moment from "moment";
 
@@ -45,14 +46,12 @@ const Write = (props) => {
   };
 
   return (
-    <Grid width="70%" margin="auto">
-      <Grid padding="16px" margin="10px auto" is_flex="is_flex">
-        <Text bold="bold" size="36px">
-          게시글 작성
-        </Text>
-      </Grid>
+    <Grid>
+      <Header/>
+      <Grid width="70%" margin="auto">
+      <Grid height="85px"></Grid>
       <Paper elevation={3}>
-        <Grid width="100%" padding="16px" margin="10px auto">
+        <Grid width="100%" padding="16px">
           <Grid is_between width="100%">
             <Grid is_flex>
               <Grid margin="5px 0px">
@@ -134,6 +133,7 @@ const Write = (props) => {
           </Grid>
         </Grid>
       </Paper>
+    </Grid>
     </Grid>
   );
 };

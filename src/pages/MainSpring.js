@@ -39,7 +39,7 @@ const MainSpring = (props) => {
 
     return (
         <React.Fragment>
-            <Header/>
+            <Header page="main"/>
             <Grid width="95%" margin="auto">
                 <Grid is_flex>
                     <Grid position="fixed" width="15%" height="100%" top="80px">
