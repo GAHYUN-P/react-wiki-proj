@@ -9,6 +9,7 @@ import {actionsCreators as cgActions} from '../redux/modules/category'
 
 import Category from "../shared/Category";
 import Post from "../components/Post";
+import Header from "../shared/Header";
 
 const Main = (props) => {
     console.log(props)
@@ -31,6 +32,7 @@ const Main = (props) => {
 
     return (
         <React.Fragment>
+            <Header/>
             <Grid width="95%" margin="auto">
                 <Grid is_flex>
                     <Grid position="fixed" width="15%" height="100%" top="80px">

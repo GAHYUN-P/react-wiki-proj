@@ -11,7 +11,7 @@ const Button = (props) => {
     const { BG_color,   } = props;
     
     //font category
-    const { font_color, font_size  } = props;
+    const { font_color, font_size, font_weight  } = props;
     
     //size, position category
     const { width, height, margin, position, top, right, bottom,  } = props;
@@ -38,6 +38,7 @@ const Button = (props) => {
 
         font_color,
         font_size,
+        font_weight,
 
         position,
         top, 
@@ -60,7 +61,7 @@ const Button = (props) => {
 
 Button.defaultProps ={
 
-    height : "50px",
+    height : "40px",
     width : "100px",
     margin : null,
 
@@ -84,6 +85,7 @@ const Btn = styled.button`
     background-color :  ${props => props.BG_color};
     
     font-size :         ${props => props.font_size};
+    font-weight :       ${props => props.font_weight};
     color :             ${props => props.font_color};
     
     height :            ${props => props.height};
@@ -94,6 +96,11 @@ const Btn = styled.button`
     bottom :            ${props => props.bottom};
     right :             ${props => props.right};
     cursor : pointer;
+
+    &:hover{
+        background-color : ${props => props.font_color};
+        color :${props => props.BG_color};
+    }
 `;
 
 
