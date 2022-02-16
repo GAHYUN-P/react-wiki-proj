@@ -10,14 +10,13 @@ import category from "./modules/category";
 export const history = createBrowserHistory();
 
 const rootReducer = combineReducers({
-    post: post,
-    likes: likes,
-    category: category,
-    router: connectRouter(history),
-  });
-  
+  post: post,
+  likes: likes,
+  category: category,
+  router: connectRouter(history),
+});
+
 // const middlewares = [thunk];
-const middlewares = [thunk.withExtraArgument({history: history})];
 
 const middlewares = [thunk.withExtraArgument({ history: history })];
 
