@@ -8,7 +8,6 @@ import CommentWrite from "../components/CommentWrite";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../config";
-import CommentWrite from "../components/CommentWrite";
 import Like from "../components/Like";
 import { actionCreators as postActions } from "../redux/modules/post";
 import { actionCreators as commentActions } from "../redux/modules/comment";
@@ -20,11 +19,10 @@ import Stack from "@mui/material/Stack";
 
 function Detail(props) {
   let { id } = useParams();
+  const _comment = useSelector((state) => state.comment.list);
 
   const dispatch = useDispatch();
   const [post, setPost] = useState({});
-  const [like, setLike] = useState(false);
-  const [dislike, setDislike] = useState(false);
   const [modify, setModify] = useState(true);
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
@@ -36,39 +34,35 @@ function Detail(props) {
         window.alert("작성자를 입력해주세요");
         return;
       }
-    setModify((prev) => !prev);
-    if (modify === false) {
+
+      if (desc === post.desc) {
+        window.alert("변동사항이 없습니다.");
+        return;
+      }
+
       axiosInstance.post(`/post/${id}`, {
         desc: desc,
         contributor: writer,
       });
     }
-  }; // axios로 db에 보내주기 desc, contributor
+  };
 
   const handleWriterChange = (e) => {
     setWriter(e.target.value);
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setDesc(e.target.value);
   };
 
   useEffect(async () => {
     await axiosInstance.get(`/post/${id}`).then((res) => {
       setPost(res.data);
+      setDesc(res.data.desc);
+      dispatch(commentActions.setComment(res.data.comments));
       dispatch(postActions.setOnePost(res.data));
     });
-    //axios로 처음에 받기
-    if ((like && dislike) || (!like && !dislike)) {
-      return 0;
-      //axios로 0 보내주기
-    } else if (like === true && dislike === false) {
-      return 1;
-    } else {
-      return -1;
-    }
-  }, []);
+  }, [_comment]);
 
   return (
     <>
