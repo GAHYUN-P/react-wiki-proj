@@ -6,6 +6,11 @@ import Detail from "../pages/Detail";
 import Main from "../pages/Main";
 import Write from "../pages/Write";
 import MainCs from "../pages/MainCs";
+import MainJava from "../pages/MainJava";
+import MainJavascript from "../pages/MainJavascript";
+import MainReact from "../pages/MainReact";
+import MainSpring from "../pages/MainSpring";
+import MainEtc from "../pages/MainEtc";
 
 function App() {
 
@@ -25,11 +30,21 @@ function App() {
         <Route exact path="/CS">
           <MainCs />
         </Route>
-        <Route exact path="/Java"></Route>
-        <Route exact path="/JavaScript"></Route>
-        <Route exact path="/React"></Route>
-        <Route exact path="/Spring"></Route>
-        <Route exact path="/etc"></Route>
+        <Route exact path="/Java">
+          <MainJava/>
+        </Route>
+        <Route exact path="/JavaScript">
+          <MainJavascript/>
+        </Route>
+        <Route exact path="/React">
+          <MainReact/>
+        </Route>
+        <Route exact path="/Spring">
+          <MainSpring/>
+        </Route>
+        <Route exact path="/etc">
+          <MainEtc/>
+        </Route>
       </Switch>
     </div>
   );
