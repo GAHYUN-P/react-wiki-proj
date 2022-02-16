@@ -76,7 +76,7 @@ const Post = (props) => {
                     <Hr/>
                     <Grid is_between="is_between" margin="10px 0px 0px 0px">
                         <Text F_size="12px">
-                            좋아요
+                            좋아요{props.likes}
                         </Text>
                         <Text F_size="12px">
                             댓글{props.comment_count}개
