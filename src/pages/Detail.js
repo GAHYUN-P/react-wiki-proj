@@ -62,7 +62,7 @@ function Detail(props) {
       dispatch(commentActions.setComment(res.data.comments));
       dispatch(postActions.setOnePost(res.data));
     });
-  }, [_comment]);
+  }, []);
 
   return (
     <>

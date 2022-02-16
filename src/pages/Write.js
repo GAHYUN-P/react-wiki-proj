@@ -9,6 +9,7 @@ import { axiosInstance } from "../config";
 import { actionCreators as postActions } from "../redux/modules/post";
 import Paper from "@mui/material/Paper";
 import Header from "../shared/Header";
+import TextField from '@mui/material/TextField';
 
 import moment from "moment";
 
@@ -43,6 +44,7 @@ const Write = (props) => {
         desc: desc,
       })
     );
+    window.alert("발행 완료!");
   };
 
   return (
@@ -55,17 +57,19 @@ const Write = (props) => {
           <Grid is_between width="100%">
             <Grid is_flex>
               <Grid margin="5px 0px">
-                <Input
+              <TextField id="outlined-basic" label="Writer" style={{ width: '100%' }} variant="outlined" onChange={(e) => setWriter(e.target.value)} value={writer || ''}/>
+                {/* <Input
                   width="100%"
                   height="52px"
                   B_radius="4px"
                   placeholder="  글쓴이"
                   _onChange={(e) => setWriter(e.target.value)}
                   value={writer || ''}
-                />
+                /> */}
               </Grid>
               <Grid margin="10px 10px">
-                <Input
+              <TextField type="password" id="outlined-basic" label="Password" style={{ width: '100%' }} variant="outlined" onChange={(e) => setPassword(e.target.value)} value={password || ''}/>
+                {/* <Input
                   type="password"
                   padding="0px 2px 0px 0px"
                   width="100%"
@@ -74,7 +78,7 @@ const Write = (props) => {
                   placeholder="  비밀번호"
                   _onChange={(e) => setPassword(e.target.value)}
                   value={password || ''}
-                />
+                /> */}
               </Grid>
             </Grid>
             <Grid>
@@ -108,23 +112,26 @@ const Write = (props) => {
               </Box>
             </Grid>
           </Grid>
-          <Input
+          <TextField id="outlined-basic" label="title" style={{ width: '100%' }} variant="outlined" onChange={(e) => setTitle(e.target.value)} value={title || ''} />
+          {/* <Input
             margin="5px 0px 0px 0px"
             height="52px"
             B_radius="4px"
             placeholder="  제목을 입력해주세요."
             _onChange={(e) => setTitle(e.target.value)}
             value={title || ''}
-          />
+          /> */}
           <Grid width="100%" padding="5px 0px 0px 0px">
-            <Input
-              is_textarea
-              B_radius="4px"
-              rows="10"
-              height="150px"
-              _onChange={(e) => setDesc(e.target.value)}
-              value={desc || ''}
-            />
+            <Grid padding="3px 0px"/>
+              <TextField
+                onChange={(e) => setDesc(e.target.value)}
+                multiline
+                rows={7}
+                id="desc"
+                defaultValue={desc || ''}
+                style={{ width: '100%' }}
+                label = "content"
+              ></TextField>
             <Grid width="auto" padding="10px">
               <Button width="80px" bg="#fff" _onClick={addpost}>
                 등록하기
