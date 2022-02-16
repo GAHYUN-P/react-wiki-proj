@@ -11,6 +11,7 @@ import { useParams } from "react-router-dom";
 import { axiosInstance } from "../config";
 import Like from "../components/Like";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { actionCreators as commentActions } from "../redux/modules/comment";
 
 function Detail(props) {
   let { id } = useParams();
@@ -22,7 +23,7 @@ function Detail(props) {
   const [modify, setModify] = useState(true);
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
-  const [comment, setComment] = useState([]);
+  const comment = useSelector((state) => state.comment.list);
 
   const {
     register,
@@ -79,8 +80,7 @@ function Detail(props) {
     await axiosInstance.get(`/post/${id}`).then((res) => {
       setPost(res.data);
       setDesc(res.data.desc);
-      setComment(res.data.comments);
-
+      dispatch(commentActions.setComment(res.data.comments));
       dispatch(postActions.setOnePost(res.data));
     });
     //axios로 처음에 받기

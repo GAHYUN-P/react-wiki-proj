@@ -86,7 +86,7 @@ export default handleActions(
       }),
     [SET_ONE_POST]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload.post);
+        draft.list = action.payload.post;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {

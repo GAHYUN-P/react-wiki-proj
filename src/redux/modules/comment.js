@@ -8,8 +8,7 @@ const ADD_COMMENT = "ADD_COMMENT";
 
 const LOADING = "LOADING";
 
-const setComment = createAction(SET_COMMENT, (post_id, comment_list) => ({
-  post_id,
+const setComment = createAction(SET_COMMENT, (comment_list) => ({
   comment_list,
 }));
 const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({
@@ -26,17 +25,14 @@ const initialState = {
 
 const addCommentDB = (post_id, comment, writer) => {
   return function (dispatch, getState, { history }) {
-    const _post = getState((state) => state.post.list);
-    const post = _post.post.list;
-    const _comments = Object.values(...post)[9];
-    console.log(_comments);
     axiosInstance
       .post(`/comment/${post_id}`, {
         comment_writer: writer,
         comment_desc: comment,
       })
       .then((res) => {
-        console.log("성공");
+        let time = new Date();
+        dispatch(addComment(comment, writer, time));
       })
       .catch((err) => {
         console.log("bad");
@@ -57,7 +53,7 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[action.payload.post_id] = action.payload.comment_list;
+        draft.list.push(...action.payload.comment_list);
       }),
 
     [ADD_COMMENT]: (state, action) =>

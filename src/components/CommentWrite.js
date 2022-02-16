@@ -7,7 +7,6 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 function CommentWrite(props) {
   let id = props.id;
   const dispatch = useDispatch();
-  const post = useSelector((state) => state.post.list);
   const {
     register,
     handleSubmit,
@@ -20,8 +19,10 @@ function CommentWrite(props) {
     },
   });
 
+  const comment = useSelector((state) => state.comment.list);
+  console.log(comment);
+
   const onValid = (data) => {
-    console.log(data);
     dispatch(
       commentActions.addCommentDB(id, data.comment_desc, data.comment_writer)
     );
