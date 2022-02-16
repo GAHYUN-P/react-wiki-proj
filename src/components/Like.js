@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import axios from "axios";
 import { axiosInstance } from "../config";
+import Stack from "@mui/material/Stack";
 
 function Like(props) {
   let id = props.id;
@@ -42,7 +43,7 @@ function Like(props) {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "left" }}>
+      <Stack style={{ display: "flex", justifyContent: "left" }}>
         <div>{post.likes}</div>
         {!like ? (
           <FaRegThumbsUp onClick={handleLikeClick}></FaRegThumbsUp>
@@ -54,7 +55,7 @@ function Like(props) {
         ) : (
           <FaThumbsDown onClick={handleDislikeClick}></FaThumbsDown>
         )}
-      </div>
+      </Stack>
     </>
   );
 }

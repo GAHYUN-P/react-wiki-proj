@@ -3,6 +3,7 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
+import { axiosInstance } from "../config";
 
 const style = {
   position: "absolute",
@@ -16,13 +17,21 @@ const style = {
   p: 4,
 };
 
-const BasicModal = () => {
+const BasicModal = (props) => {
+  const id = props.id;
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const [password, setPassword] = useState("");
+
+  const handleChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   const handleClick = () => {
-    console.log("axios");
+    axiosInstance.post(`/post/${id}`, { password: password }).then((res) => {
+      console.log(res);
+    });
   };
 
   return (
@@ -38,6 +47,7 @@ const BasicModal = () => {
           <Typography id="modal-modal-title" variant="h6" component="h2">
             삭제
           </Typography>
+          <input type="password" onChange={handleChange} />
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             삭제하시겠습니까?
           </Typography>
