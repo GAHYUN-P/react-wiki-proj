@@ -62,7 +62,7 @@ const Write = (props) => {
                   B_radius="4px"
                   placeholder="  글쓴이"
                   _onChange={(e) => setWriter(e.target.value)}
-                  value={writer}
+                  value={writer || ''}
                 />
               </Grid>
               <Grid margin="10px 10px">
@@ -74,7 +74,7 @@ const Write = (props) => {
                   B_radius="4px"
                   placeholder="  비밀번호"
                   _onChange={(e) => setPassword(e.target.value)}
-                  value={password}
+                  value={password || ''}
                 />
               </Grid>
             </Grid>
@@ -99,11 +99,11 @@ const Write = (props) => {
                     <MenuItem value={"Computer Science"}>
                       Computer Science
                     </MenuItem>
-                    <MenuItem value={"JAVA"}>JAVA</MenuItem>
-                    <MenuItem value={"JavaScript"}>JavaScript</MenuItem>
-                    <MenuItem value={"React"}>React</MenuItem>
-                    <MenuItem value={"Spring"}>Spring</MenuItem>
-                    <MenuItem value={"기타"}>기타</MenuItem>
+                    <MenuItem value={"JAVA" || ''}>JAVA</MenuItem>
+                    <MenuItem value={"JavaScript" || ''}>JavaScript</MenuItem>
+                    <MenuItem value={"React" || ''}>React</MenuItem>
+                    <MenuItem value={"Spring" || ''}>Spring</MenuItem>
+                    <MenuItem value={"기타" || ''}>기타</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -115,7 +115,7 @@ const Write = (props) => {
             B_radius="4px"
             placeholder="  제목을 입력해주세요."
             _onChange={(e) => setTitle(e.target.value)}
-            value={title}
+            value={title || ''}
           />
           <Grid width="100%" padding="5px 0px 0px 0px">
             <Input
@@ -124,7 +124,7 @@ const Write = (props) => {
               rows="10"
               height="150px"
               _onChange={(e) => setDesc(e.target.value)}
-              value={desc}
+              value={desc || ''}
             />
             <Grid width="auto" padding="10px">
               <Button width="80px" bg="#fff" _onClick={addpost}>
