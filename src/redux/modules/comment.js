@@ -8,8 +8,7 @@ const ADD_COMMENT = "ADD_COMMENT";
 
 const LOADING = "LOADING";
 
-const setComment = createAction(SET_COMMENT, (post_id, comment_list) => ({
-  post_id,
+const setComment = createAction(SET_COMMENT, (comment_list) => ({
   comment_list,
 }));
 const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({
@@ -20,22 +19,33 @@ const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
 const initialState = {
-  list: {},
+  list: [],
   is_loading: false,
 };
 
 const addCommentDB = (post_id, comment, writer) => {
   return function (dispatch, getState, { history }) {
-    // axiosInstance
-    //   .post(`/comment/${post_id}`, {
+    axiosInstance
+      .post(`/comment/${post_id}`, {
+        comment_writer: writer,
+        comment_desc: comment,
+      })
+      .then((res) => {
+        let time = new Date();
+        dispatch(addComment(comment, writer, time));
+      })
+      .catch((err) => {
+        console.log("bad");
+      });
+    // .then((res) => {
+    //   let time = new Date();
+    //   const _comment = {
     //     comment_writer: writer,
     //     comment_desc: comment,
-    //   })
-    //   .then((res) => {
-    //     let time = new Date();
-    //     dispatch(addComment(post_id, comment));
-    //   });
-    dispatch(addComment(post_id, comment));
+    //     createdAt: time,
+    //   };
+    //   dispatch(addComment(_comment));
+    // });
   };
 };
 
@@ -43,12 +53,12 @@ export default handleActions(
   {
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list[action.payload.post_id] = action.payload.comment_list;
+        draft.list = action.payload.comment_list;
       }),
-
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload);
+        draft.list.push(action.payload);
+        console.log(state);
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {

@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
 
-
 const Button = (props) => {
+  //Border category
+  const { Border, B_radius } = props;
 
     //Border category
     const { Border, B_radius,   } = props;
@@ -26,34 +27,53 @@ const Button = (props) => {
 
     const {  } = props;
 
+  //font category
+  const { font_color, font_size } = props;
 
+  //size, position category
+  const { width, height, margin, position, top, right, bottom } = props;
 
+  //event category
+  const { _ref, _onClick, disabled } = props;
 
+  //text category
+  const { text, children } = props;
 
-    const sytles = {
-        Border,
-        B_radius,
+  const {} = props;
 
-        BG_color,
+  const sytles = {
+    Border,
+    B_radius,
 
         font_color,
         font_size,
         font_weight,
 
-        position,
-        top, 
-        right, bottom,
 
-        width,
-        height,
-        margin,
+    font_color,
+    font_size,
 
-    }
+    position,
+    top,
+    right,
+    bottom,
 
-    
-    return (
+    width,
+    height,
+    margin,
+  };
+
+  return (
     <div>
-        <Btn {...sytles} ref={_ref} onClick={()=>_onClick()} disabled={disabled}>{text}{children}</Btn>
+      <Btn
+        {...sytles}
+        ref={_ref}
+        onClick={() => _onClick()}
+        disabled={disabled}
+      >
+        {text}
+        {children}
+      </Btn>
     </div>
     );
 }
@@ -65,17 +85,21 @@ Button.defaultProps ={
     width : "100px",
     margin : null,
 
-    position : null,
-    top : null,
-    right : null,
-    bottom : null,
 
-    text : null,
-    _onClick : false,
-    disabled : false,
-    _ref:null,
-    
+Button.defaultProps = {
+  height: "50px",
+  width: "100px",
+  margin: null,
 
+  position: null,
+  top: null,
+  right: null,
+  bottom: null,
+
+  text: null,
+  _onClick: false,
+  disabled: false,
+  _ref: null,
 };
 
 const Btn = styled.button`
@@ -102,6 +126,5 @@ const Btn = styled.button`
         color :${props => props.BG_color};
     }
 `;
-
 
 export default Button;

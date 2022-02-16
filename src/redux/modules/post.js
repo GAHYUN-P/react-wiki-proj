@@ -2,6 +2,12 @@ import { createAction, handleActions } from "redux-actions";
 import { produce } from "immer";
 import { axiosInstance } from "../../config";
 import axios from "axios";
+import {
+  FaRegThumbsDown,
+  FaRegThumbsUp,
+  FaThumbsDown,
+  FaThumbsUp,
+} from "react-icons/fa";
 
 const SET_POST = "SET_POST";
 const ADD_POST = "ADD_POST";
@@ -86,8 +92,7 @@ export default handleActions(
       }),
     [SET_ONE_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.post);
-        draft.list.push(action.payload.post);
+        draft.list = action.payload.post;
       }),
     [ADD_POST]: (state, action) =>
       produce(state, (draft) => {

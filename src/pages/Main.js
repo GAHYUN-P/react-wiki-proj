@@ -7,28 +7,29 @@ import {Grid} from "../elements";
 import {useDispatch, useSelector} from "react-redux";
 import {actionsCreators as cgActions} from '../redux/modules/category'
 
+
 import Category from "../shared/Category";
 import Post from "../components/Post";
 import Header from "../shared/Header";
 
 const Main = (props) => {
-    console.log(props)
+  console.log(props);
 
-    const dispatch = useDispatch();
-    const [post_list, setPost_List] = useState([])
+  const dispatch = useDispatch();
+  const [post_list, setPost_List] = useState([]);
 
-    React.useEffect(async () => {
-        // dispatch(setProduct());
-        await axios
-            .get("http://3.36.62.222/", {}, {withCredentials: true})
-            .then((response) => {
-                console.log(response)
-                console.log(response.data)
-                setPost_List(response.data)
-            });
-    }, []);
 
-    // console.log(post_list)
+  React.useEffect(async () => {
+    // dispatch(setProduct());
+    await axios
+      .get("http://3.36.62.222/", {}, { withCredentials: true })
+      .then((response) => {
+        setPost_List(response.data);
+      });
+  }, []);
+
+  console.log(post_list);
+
 
     return (
         <React.Fragment>
@@ -48,9 +49,11 @@ const Main = (props) => {
                         }
                     </Grid>
                 </Grid>
-            </Grid>
-        </React.Fragment>
-    );
-};
 
+            </Grid>
+          </Box>
+        </Grid>
+      </React.Fragment>
+    );
+  
 export default Main;
