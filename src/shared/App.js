@@ -2,6 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
+import Post from "../components/Post";
 import Detail from "../pages/Detail";
 import Main from "../pages/Main";
 import Write from "../pages/Write";
@@ -20,7 +21,7 @@ function App() {
         <Route exact path="/write">
           <Write />
         </Route>
-        <Route path="/detail">
+        <Route path="/detail/:id">
           {/* axios연결 후 detail parameter연결 */}
           <Detail />
         </Route>

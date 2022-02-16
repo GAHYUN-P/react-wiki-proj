@@ -1,4 +1,3 @@
-//configStore.js
 import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
@@ -10,7 +9,6 @@ import category from "./modules/category";
 
 export const history = createBrowserHistory();
 
-//history와 router가 연결되었다!
 const rootReducer = combineReducers({
     post: post,
     likes: likes,
@@ -21,18 +19,9 @@ const rootReducer = combineReducers({
 // const middlewares = [thunk];
 const middlewares = [thunk.withExtraArgument({history: history})];
 
+const middlewares = [thunk.withExtraArgument({ history: history })];
 
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-        // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
-      })
-    : compose;
-
-    
-const enhancer = composeEnhancers(
-    applyMiddleware(...middlewares)
-  );
+const enhancer = applyMiddleware(...middlewares);
 
 let store = (initialStore) => createStore(rootReducer, enhancer);
 

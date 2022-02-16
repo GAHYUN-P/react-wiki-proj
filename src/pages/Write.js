@@ -1,4 +1,4 @@
-import React, {useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -16,34 +16,36 @@ import { Grid, Text, Input, Button } from "../elements";
 
 const Write = (props) => {
   ////
-
   const dispatch = useDispatch()
   const [postInfo, setPostInfo] = useState([])
 
 
-  const [title, setTitle] = useState(postInfo ? postInfo.title : ""); 
-  const [desc,setDesc] = useState(postInfo ? postInfo.content : "");
-  const [password,setPassword] = useState();
-  const [writer,setWriter] = useState();
+
+  const [title, setTitle] = useState(postInfo ? postInfo.title : "");
+  const [desc, setDesc] = useState(postInfo ? postInfo.content : "");
+  const [password, setPassword] = useState();
+  const [writer, setWriter] = useState();
   const [category, setCategory] = React.useState("");
 
   const handleChange = (event) => {
     setCategory(event.target.value);
   };
 
-  const addpost =() =>{
-      if( !title || !desc || !password || !writer || !category){
-          window.alert("빈 공간을 채워주세요!")
-          return ;
-      }
-      dispatch(postActions.add_Post({
+  const addpost = () => {
+    if (!title || !desc || !password || !writer || !category) {
+      window.alert("빈 공간을 채워주세요!");
+      return;
+    }
+    dispatch(
+      postActions.add_Post({
         title: title,
         writer: writer,
         category: category,
         password: password,
         desc: desc,
-      }))
-  }
+      })
+    );
+  };
 
   return (
     <Grid width="70%" margin="auto">

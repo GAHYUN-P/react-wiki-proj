@@ -1,10 +1,10 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
-import * as React from 'react';
-import {styled} from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 import {useDispatch, useSelector} from "react-redux";
 import { actionsCreators as cgActions } from '../redux/modules/category'
