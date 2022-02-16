@@ -11,6 +11,7 @@ import { axiosInstance } from "../config";
 import CommentWrite from "../components/CommentWrite";
 import Like from "../components/Like";
 import { actionCreators as postActions } from "../redux/modules/post";
+import { setCommentRange } from "typescript";
 
 function Detail(props) {
   let { id } = useParams();
@@ -22,6 +23,7 @@ function Detail(props) {
   const [modify, setModify] = useState(true);
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
+  const [comment, setComment] = useState([]);
 
   const {
     register,
@@ -49,6 +51,16 @@ function Detail(props) {
   const handleModify = (data) => {
     setModify((prev) => !prev);
     if (modify === false) {
+      if (writer.length === 0) {
+        window.alert("작성자를 입력해주세요");
+        return;
+      }
+
+      if (desc === post.desc) {
+        window.alert("변동사항이 없습니다.");
+        return;
+      }
+
       axiosInstance.post(`/post/${id}`, {
         desc: desc,
         contributor: writer,
@@ -61,13 +73,14 @@ function Detail(props) {
   };
 
   const handleChange = (e) => {
-    console.log(e.target.value);
     setDesc(e.target.value);
   };
 
   useEffect(async () => {
     await axiosInstance.get(`/post/${id}`).then((res) => {
       setPost(res.data);
+      setDesc(res.data.desc);
+      setComment(res.data.comments);
       dispatch(postActions.setOnePost(res.data));
     });
     //axios로 처음에 받기
@@ -90,7 +103,7 @@ function Detail(props) {
         {modify ? (
           <>
             <TextareaForDesc
-              value={post.desc}
+              value={desc}
               readOnly={modify}
               id="desc"
             ></TextareaForDesc>
@@ -123,13 +136,13 @@ function Detail(props) {
       </div>
 
       <div>
-        {post.comments?.map((e, i) => {
+        {comment.map((e, i) => {
           return <Comments key={i} {...e} />;
         })}
       </div>
 
       <div style={{ display: "flex", justifyContent: "right" }}>
-        <Button onClick={handleModify}>수정</Button>
+        <Button onClick={handleSubmit(handleModify)}>수정</Button>
         <BasicModal>삭제</BasicModal>
       </div>
     </>

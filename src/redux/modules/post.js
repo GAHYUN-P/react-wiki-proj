@@ -86,7 +86,6 @@ export default handleActions(
       }),
     [SET_ONE_POST]: (state, action) =>
       produce(state, (draft) => {
-        console.log(action.payload.post);
         draft.list.push(action.payload.post);
       }),
     [ADD_POST]: (state, action) =>

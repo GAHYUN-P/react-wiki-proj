@@ -20,22 +20,22 @@ const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({
 const loading = createAction(LOADING, (is_loading) => ({ is_loading }));
 
 const initialState = {
-  list: {},
+  list: [],
   is_loading: false,
 };
 
 const addCommentDB = (post_id, comment, writer) => {
   return function (dispatch, getState, { history }) {
-    // axiosInstance
-    //   .post(`/comment/${post_id}`, {
-    //     comment_writer: writer,
-    //     comment_desc: comment,
-    //   })
-    //   .then((res) => {
-    //     let time = new Date();
-    //     dispatch(addComment(post_id, comment));
-    //   });
-    dispatch(addComment(post_id, comment));
+    axiosInstance
+      .post(`/comment/${post_id}`, {
+        comment_writer: writer,
+        comment_desc: comment,
+      })
+      .then((res) => {
+        let time = new Date();
+        dispatch(addComment(post_id, comment));
+      });
+    dispatch(addComment(comment));
   };
 };
 
