@@ -10,7 +10,13 @@ import moment from "moment";
 import { useHistory } from "react-router-dom";
 
 const Post = (props) => {
-    // console.log(props)
+
+   
+    const short_desc = props.desc.substring(0,50)
+    
+
+    const new_desc = props.desc.substring(0,50) + ' ...';
+
 
     const bull = (
         <Box
@@ -57,7 +63,7 @@ const Post = (props) => {
                     {props.writer}
                 </Typography>
                 <Typography variant="body2">
-                    {props.desc}
+                    {new_desc}
                 </Typography>
             </CardContent>
             <CardActions>
