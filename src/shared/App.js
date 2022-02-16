@@ -1,3 +1,4 @@
+import {useDispatch, useSelector} from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
@@ -5,8 +6,15 @@ import Post from "../components/Post";
 import Detail from "../pages/Detail";
 import Main from "../pages/Main";
 import Write from "../pages/Write";
+import MainCs from "../pages/MainCs";
+import MainJava from "../pages/MainJava";
+import MainJavascript from "../pages/MainJavascript";
+import MainReact from "../pages/MainReact";
+import MainSpring from "../pages/MainSpring";
+import MainEtc from "../pages/MainEtc";
 
 function App() {
+
   return (
     <div className="App">
       <Switch>
@@ -19,6 +27,24 @@ function App() {
         </Route>
         <Route exact path="/">
           <Main />
+        </Route>
+        <Route exact path="/CS">
+          <MainCs />
+        </Route>
+        <Route exact path="/Java">
+          <MainJava/>
+        </Route>
+        <Route exact path="/JavaScript">
+          <MainJavascript/>
+        </Route>
+        <Route exact path="/React">
+          <MainReact/>
+        </Route>
+        <Route exact path="/Spring">
+          <MainSpring/>
+        </Route>
+        <Route exact path="/etc">
+          <MainEtc/>
         </Route>
       </Switch>
     </div>

@@ -14,7 +14,7 @@ const Grid = (props) => {
     const { BG_c, } = props;
     
     //flex category
-    const { is_flex, flex_direction, flex_wrap, justify_content, align_items } = props;
+    const { is_flex, is_between, flex_direction, flex_wrap, justify_content, align_items } = props;
     
     //size, position category
     const { width, height, margin, padding, position, top, bottom, z_index } = props;
@@ -37,6 +37,7 @@ const Grid = (props) => {
         BG_c,
 
         is_flex,
+        is_between,
         flex_direction,
         justify_content,
         align_items,
@@ -66,6 +67,7 @@ Grid.defaultProps ={
     children : null,
 
     is_flex :false,
+    is_between: false,
     flex_direction : "row",
     flex_wrap : 'wrap',
     align_items : "center",
@@ -91,6 +93,7 @@ Grid.defaultProps ={
 const GridBox = styled.div`
     //flex
     ${(props) => (props.is_flex? `display : flex;`:"")}
+    ${ props => props.is_between ? `display: flex; justify-content: space-between; align-items: center;` : '' }
     align-items : ${props => props.align_items};
     justify-content:${props => props.justify_content};
     flex-direction :  ${props => props.flex_direction};
