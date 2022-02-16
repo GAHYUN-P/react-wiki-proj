@@ -1,11 +1,14 @@
+import {useDispatch, useSelector} from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import "../App.css";
 import Detail from "../pages/Detail";
 import Main from "../pages/Main";
 import Write from "../pages/Write";
+import MainCs from "../pages/MainCs";
 
 function App() {
+
   return (
     <div className="App">
       <Switch>
@@ -19,6 +22,14 @@ function App() {
         <Route exact path="/">
           <Main />
         </Route>
+        <Route exact path="/CS">
+          <MainCs />
+        </Route>
+        <Route exact path="/Java"></Route>
+        <Route exact path="/JavaScript"></Route>
+        <Route exact path="/React"></Route>
+        <Route exact path="/Spring"></Route>
+        <Route exact path="/etc"></Route>
       </Switch>
     </div>
   );
