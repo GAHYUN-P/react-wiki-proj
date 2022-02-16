@@ -10,6 +10,7 @@ import { actionsCreators as cgActions } from "../redux/modules/category";
 import Category from "../shared/Category";
 import Post from "../components/Post";
 import Header from "../shared/Header";
+import { axiosInstance } from "../config";
 
 const Main = (props) => {
   console.log(props);
@@ -19,8 +20,8 @@ const Main = (props) => {
 
   React.useEffect(async () => {
     // dispatch(setProduct());
-    await axios
-      .get("http://3.36.62.222/", {}, { withCredentials: true })
+    await axiosInstance
+      .get("/", {}, { withCredentials: true })
       .then((response) => {
         setPost_List(response.data);
       });

@@ -23,7 +23,7 @@ function Detail(props) {
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
 
-  const handleModify = (data) => {
+  const handleModify = (desc) => {
     setModify((prev) => !prev);
     if (modify === false) {
       if (writer.length === 0) {
