@@ -22,7 +22,9 @@ function CommentWrite(props) {
 
   const onValid = (data) => {
     console.log(data);
-    // dispatch(commentActions.addCommentDB(id, ...data));
+    dispatch(
+      commentActions.addCommentDB(id, data.comment_desc, data.comment_writer)
+    );
   };
 
   return (

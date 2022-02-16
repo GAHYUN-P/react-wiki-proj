@@ -4,14 +4,13 @@ import styled from "styled-components";
 import BasicModal from "../components/Modal";
 import Button from "@mui/material/Button";
 import Comments from "../components/Comments";
+import CommentWrite from "../components/CommentWrite";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { axiosInstance } from "../config";
-import CommentWrite from "../components/CommentWrite";
 import Like from "../components/Like";
 import { actionCreators as postActions } from "../redux/modules/post";
-import { setCommentRange } from "typescript";
 
 function Detail(props) {
   let { id } = useParams();
@@ -81,6 +80,7 @@ function Detail(props) {
       setPost(res.data);
       setDesc(res.data.desc);
       setComment(res.data.comments);
+
       dispatch(postActions.setOnePost(res.data));
     });
     //axios로 처음에 받기
@@ -132,7 +132,7 @@ function Detail(props) {
       </div>
 
       <div>
-        <CommentWrite props={id} />
+        <CommentWrite id={id} />
       </div>
 
       <div>

@@ -26,16 +26,30 @@ const initialState = {
 
 const addCommentDB = (post_id, comment, writer) => {
   return function (dispatch, getState, { history }) {
+    const _post = getState((state) => state.post.list);
+    const post = _post.post.list;
+    const _comments = Object.values(...post)[9];
+    console.log(_comments);
     axiosInstance
       .post(`/comment/${post_id}`, {
         comment_writer: writer,
         comment_desc: comment,
       })
       .then((res) => {
-        let time = new Date();
-        dispatch(addComment(post_id, comment));
+        console.log("성공");
+      })
+      .catch((err) => {
+        console.log("bad");
       });
-    dispatch(addComment(comment));
+    // .then((res) => {
+    //   let time = new Date();
+    //   const _comment = {
+    //     comment_writer: writer,
+    //     comment_desc: comment,
+    //     createdAt: time,
+    //   };
+    //   dispatch(addComment(_comment));
+    // });
   };
 };
 
@@ -48,6 +62,7 @@ export default handleActions(
 
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
+        draft.list.push(action.payload);
         console.log(action.payload);
       }),
     [LOADING]: (state, action) =>
