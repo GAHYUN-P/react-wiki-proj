@@ -2,6 +2,7 @@ import * as React from "react";
 import {Grid, Image, Button} from "../elements";
 import wikiwiki_logo from "./wikiwiki_logo.png";
 import styled from "styled-components";
+import { history } from "../redux/configureStore";
 
 const Header = (props) => {
 
@@ -14,7 +15,7 @@ const Header = (props) => {
                     </Grid>
 
                     <Grid>
-                        <Button BG_color="white" font_weight="bold" font_size="15x" font_color="#E65923" height="45px" Border="2px solid #E65923" B_radius="5px">
+                        <Button _onClick={()=>{window.location.href = '/write'}} BG_color="white" font_weight="bold" font_size="15x" font_color="#E65923" height="45px" Border="2px solid #E65923" B_radius="5px">
                             새 주제 발행</Button>
                     </Grid>
                 </Grid>
