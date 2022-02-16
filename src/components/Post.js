@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import moment from 'moment';
 
 const Post = (props) => {
-    console.log(props)
+    // console.log(props)
 
     const bull = (
         <Box
@@ -25,10 +25,18 @@ const Post = (props) => {
 
     return (
         <Card sx={{
-                width: 275,
+                width: 250,
                 margin: 2,
             }}>
             <CardContent>
+                <Typography
+                    sx={{
+                        fontSize: 10
+                    }}
+                    color="text.secondary"
+                    gutterBottom>
+                    마지막 업데이트
+                </Typography>
                 <Typography
                     sx={{
                         fontSize: 14

@@ -27,35 +27,37 @@ const Main = (props) => {
             });
     }, []);
 
-    console.log(post_list)
+    // console.log(post_list)
+
+    const indexinfo = useSelector((state) => state.category.list[0])
+    console.log(indexinfo);  
 
     return (
         <React.Fragment>
-            <div
-                style={{
-                    padding: "50px",
-                    margin: "50px 0px"
+            <Grid style={{
+                    margin: "50px 0px",
+                    padding: "20px"
                 }}>
-                <Grid container spacing={5}>
-                    <Grid item xs="auto">
-                        <Category/>
-                    </Grid>
-                    <Grid item xs={10} display="flex" flexWrap="wrap">
-                        {
-                            post_list.map((p, idx) => {
-                                console.log({
-                                    ...p
-                                } + '맵찍기')
-                                return (<Post {...p} key={p.post_id}></Post>)
-                            })
-                        }
-                    </Grid>
-                    {/* <Grid item="item" xs="xs">
-                    <Item>xs</Item>
-                </Grid> */
-                    }
-                </Grid>
-            </div>
+              <Box sx={{
+                      flexGrow: 1
+                  }}>
+                  <Grid container="container" spacing={2} columns={16}>
+                      <Grid item="item" xs={3}>
+                          <Category props={post_list}/>
+                      </Grid>
+                      <Grid display="flex" flexWrap="wrap" item xs={13}>
+                          {
+                              post_list.map((p, idx) => {
+                                  console.log({
+                                      ...p
+                                  } + '맵찍기')
+                                  return (<Post {...p} key={p.post_id}></Post>)
+                              })
+                          }
+                      </Grid>
+                  </Grid>
+              </Box>
+            </Grid>
         </React.Fragment>
     );
 };

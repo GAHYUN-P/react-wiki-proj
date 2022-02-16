@@ -5,13 +5,23 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
-export default function Category() {
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
+import { useDispatch, useSelector } from 'react-redux'
+import { actionsCreators as cgActions } from '../redux/modules/category'
+
+export default function Category(props) {
+  console.log(props);
+  const dispatch = useDispatch()
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
+    console.log(index);
+    dispatch(cgActions.setCg({
+        index:index
+      }))
   };
 
+  // if 이게 1이면 새 리스트에 카테고리 CS인것 넣어주기
   return (
     <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
       <List component="nav" aria-label="main mailbox folders">
