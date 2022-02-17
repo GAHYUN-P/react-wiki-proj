@@ -76,19 +76,38 @@ const Header = (props) => {
                                             - 새 포스트 작성을 원하시면 상단의
                                             <text
                                                 style={{
-                                                    color: '#E65923'
-                                                }}> 새 주제 발행</text>을 클릭해주세요<br/>
+                                                    color: '#E65923',
+                                                    border: '2px solid',
+                                                    margin: '1px 2px 0px 5px',
+                                                    padding: '3px',
+                                                    fontSize: '12px'
+                                                }}>새 주제 발행</text>을 클릭해주세요<br/>
                                             - 카드를 누르면 상세페이지로 이동합니다.<br/>
                                             - 상세페이지에서
                                             <text
                                                 style={{
-                                                    color: '#E65923'
+                                                    color: '#E65923',
+                                                    border: '2px solid',
+                                                    margin: '1px 2px 0px 5px',
+                                                    padding: '3px',
+                                                    fontSize: '12px'
                                                 }}>좋아요</text>를 누르면 온도가 올라가고 
                                             <text
                                                 style={{
+                                                    color: '#666666',
+                                                    border: '2px solid',
+                                                    margin: '1px 2px 0px 5px',
+                                                    padding: '3px',
+                                                    fontSize: '12px'
+                                                }}>싫어요</text>를 누르면 온도가 내려갑니다<br/>
+                                            - <text
+                                                style={{
+                                                    color: 'blue'
+                                                }}>영하 50도</text> 밑으로 내려가면 게시물이 얼어붙어요!<br/>
+                                            - 상세페이지에서 내용을 수정하시면 <text
+                                                style={{
                                                     color: '#E65923'
-                                                }}> 싫어요</text>를 누르면 온도가 내려갑니다<br/>
-                                            - 상세페이지에서 내용을 수정하시면 contributor로 닉네임이 남아요!<br/>
+                                                }}> contributor</text>로 닉네임이 남습니다<br/>
                                             - 상세페이지에서 댓글도 남길 수 있습니다 :)
                                         </Typography>
                                     </Box>
