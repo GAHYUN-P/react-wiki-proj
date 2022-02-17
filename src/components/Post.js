@@ -41,13 +41,22 @@ const Post = (props) => {
 
   if (props.likes <= -100) {
     return (
-      <Grid>
+      <Grid
+        type="hover"
+        BG_c_hover = "rgba(137, 207, 240, 1)"
+        B_radius = "5px"
+        _onClick = {()=>{
+            window.alert('얼어 붙은 게시물 입니다 :(\n관리자가 내용 확인 후 재업로드 됩니다!')
+        }}
+      >
         <Card
           sx={{
             width: 250,
             height: 250,
-            margin: 2,
+            margin: 1,
+            padding: 1,
           }}
+          style = {{ opacity: 0.5 }}
         >
           <CardContent>
             <Typography
@@ -80,6 +89,9 @@ const Post = (props) => {
               {props.writer}
             </Typography>
             <Grid margin="0px 0px 10px 0px">
+                {/* <Typography variant="body2" style={{ height: "65px", color: "Blue"}}>
+                  얼어붙은 게시물 입니다!
+                </Typography> */}
               <Image shape="imageBG" src={block} />
             </Grid>
             <Hr />
@@ -127,6 +139,9 @@ const Post = (props) => {
 
   return (
     <Grid
+      type="hover"
+      BG_c_hover = "rgba(230, 89, 35, 1)"
+      B_radius = "5px"
       _onClick={() => {
         window.location.href = `/detail/${props.post_id}`;
       }}
@@ -135,7 +150,8 @@ const Post = (props) => {
         sx={{
           width: 250,
           height: 250,
-          margin: 2,
+          margin: 1, 
+          padding: 1,
         }}
       >
         <CardContent>
