@@ -16,6 +16,7 @@ import Header from "../shared/Header";
 import Box from "@mui/material/Box";
 import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import Contributor from "../components/Contributor";
 
 function Detail(props) {
   let { id } = useParams();
@@ -67,9 +68,12 @@ function Detail(props) {
 
   return (
     <>
-      <Header />
-      <Stack spacing={4}>
-        <Typography variant="h2">{post.title}</Typography>
+      <Stack marginTop={0}>
+        <Header />
+      </Stack>
+      <Stack marginTop={15} spacing={4}>
+        <Contributor post={post} marginTop={20} />
+        <Typography variant="h3">{post.title}</Typography>
         <h1>{post.writer}</h1>
         <div>
           <label htmlFor="desc"></label>
@@ -131,9 +135,9 @@ function Detail(props) {
           <Like id={id} />
         </div>
 
-        <div>
+        <Stack>
           <CommentWrite id={id} />
-        </div>
+        </Stack>
 
         <div>
           {_comment.map((e, i) => {
