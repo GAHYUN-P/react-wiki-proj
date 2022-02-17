@@ -133,9 +133,8 @@ const Write = (props) => {
                 label = "content"
               ></TextField>
             <Grid width="auto" padding="10px">
-              <Button width="80px" bg="#fff" _onClick={addpost}>
-                등록하기
-              </Button>
+              <Button _onClick={addpost} BG_color="#E65923" font_weight="bold" font_size="15x" font_color="white" height="45px" Border="2px solid #E65923" B_radius="5px">
+                            등록하기</Button>
             </Grid>
           </Grid>
         </Grid>
