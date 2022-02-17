@@ -18,6 +18,8 @@ import { Typography } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import Contributor from "../components/Contributor";
 
+import {Grid} from '../elements';
+
 function Detail(props) {
   let { id } = useParams();
 
@@ -67,12 +69,16 @@ function Detail(props) {
   }, []);
 
   return (
-    <>
+    <Grid>
       <Stack marginTop={0}>
         <Header />
       </Stack>
+      <Grid width='90%' margin='auto'>
       <Stack marginTop={15} spacing={4}>
-        <Contributor post={post} marginTop={20} />
+        <Grid width='20%' margin='auto' Border='3px solid'>
+          <Contributor post={post} marginTop={20}/>
+        </Grid>
+        
         <Typography variant="h3">{post.title}</Typography>
         <h1>{post.writer}</h1>
         <div>
@@ -130,10 +136,10 @@ function Detail(props) {
           )}
         </div>
         <Stack>
-          <div style={{ display: "flex", justifyContent: "right" }}>
-            <Button onClick={handleModify}>수정</Button>
-            <BasicModal id={id}>삭제</BasicModal>
-          </div>
+            <div style={{ display: "flex", justifyContent: "right" }}>
+              <Button onClick={handleModify}>수정</Button>
+              <BasicModal id={id}>삭제</BasicModal>
+            </div>
 
           <div
             style={{
@@ -157,7 +163,8 @@ function Detail(props) {
           })}
         </div>
       </Stack>
-    </>
+      </Grid>
+    </Grid>
   );
 }
 
