@@ -12,17 +12,21 @@ import Stack from "@mui/material/Stack";
 
 function Like(props) {
   let id = props.id;
-  const post = useSelector((state) => state.post);
+  const post = useSelector((state) => state.post.list);
 
   const [like, setLike] = useState(false);
   const [dislike, setDislike] = useState(false);
   const [error, setError] = useState("");
+  const [like_value, setLike_value] = useState(post.likes);
+
+  console.log(like_value);
 
   const handleLikeClick = () => {
     if (dislike) {
       setDislike(false);
     }
     setLike((prev) => !prev);
+    setLike_value((prev) => post.likes + 1);
   };
 
   const handleDislikeClick = () => {
@@ -30,6 +34,7 @@ function Like(props) {
       setLike(false);
     }
     setDislike((prev) => !prev);
+    setLike_value((prev) => post.likes - 1);
   };
 
   useEffect(() => {
@@ -43,13 +48,13 @@ function Like(props) {
 
   return (
     <>
-      <Stack style={{ display: "flex", justifyContent: "left" }}>
-        <div>{post.likes}</div>
+      <Stack sx={{ justifyContent: "center" }}>
         {!like ? (
-          <FaRegThumbsUp sx={{}} onClick={handleLikeClick}></FaRegThumbsUp>
+          <FaRegThumbsUp onClick={handleLikeClick}></FaRegThumbsUp>
         ) : (
           <FaThumbsUp onClick={handleLikeClick}></FaThumbsUp>
         )}
+        <div>{like_value}</div>
         {!dislike ? (
           <FaRegThumbsDown onClick={handleDislikeClick}></FaRegThumbsDown>
         ) : (

@@ -6,6 +6,7 @@ import { actionCreators as commentActions } from "../redux/modules/comment";
 import { useHistory } from "react-router-dom";
 import { Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 function CommentWrite(props) {
   let id = props.id;
@@ -32,14 +33,21 @@ function CommentWrite(props) {
 
   return (
     <>
-      <Stack sx={{ display: "flex" }}>
-        <form>
-          <Stack sx={{ width: 800, justifyContent: "center" }}>
+      <form>
+        <Stack sx={{ display: "flex", justifyContent: "center" }}>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "60ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
             <TextField
               {...register("comment_desc", {
                 required: "내용을 입력해주세요",
                 minLength: {
-                  value: 10,
+                  value: 8,
                   message: "댓글은 최소 10자 이상이어야 합니다.",
                 },
               })}
@@ -51,6 +59,17 @@ function CommentWrite(props) {
             <span style={{ color: "red", fontSize: "10px" }}>
               {errors?.comment_desc?.message}
             </span>
+          </Box>
+        </Stack>
+        <Stack>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "40ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
             <TextField
               {...register("comment_writer", {
                 required: "작성자를 입력해주세요",
@@ -58,17 +77,15 @@ function CommentWrite(props) {
                   message: "영문, 숫자만 가능합니다.",
                 },
               })}
-              multiline
               label="작성자"
-              placeholder="작성자"
             ></TextField>
             <span style={{ color: "red", fontSize: "10px" }}>
               {errors?.comment_writer?.message}
             </span>
-          </Stack>
+          </Box>
           <Button onClick={handleSubmit(onValid)}>작성</Button>
-        </form>
-      </Stack>
+        </Stack>
+      </form>
     </>
   );
 }

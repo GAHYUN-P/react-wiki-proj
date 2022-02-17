@@ -5,6 +5,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { axiosInstance } from "../config";
 import { useHistory } from "react-router-dom";
+import TextField from "@mui/material/TextField";
 
 const style = {
   position: "absolute",
@@ -25,12 +26,16 @@ const BasicModal = (props) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setPassword(e.target.value);
   };
 
   const handleClick = () => {
+    if (password.length === 0) {
+      return setError("비밀번호를 입력해주세요");
+    }
     axiosInstance
       .delete(
         `/post/${id}`,
@@ -39,6 +44,11 @@ const BasicModal = (props) => {
       )
       .then((res) => {
         history.replace("/");
+      })
+      .catch((err) => {
+        if (err) {
+          return setError("삭제할 수 없습니다.");
+        }
       });
   };
 
@@ -53,13 +63,16 @@ const BasicModal = (props) => {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            삭제
+            비밀번호를 입력해주세요
           </Typography>
-          <input type="password" onChange={handleChange} />
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            삭제하시겠습니까?
-          </Typography>
-          <Button onClick={handleClick}>삭제</Button>
+          <TextField type="password" onChange={handleChange} />
+          <div style={{ display: "flex" }}>
+            <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+              삭제하시겠습니까?
+            </Typography>
+            <Button onClick={handleClick}>삭제</Button>
+          </div>
+          <span style={{ color: "red", fontSize: "10px" }}>{error}</span>
         </Box>
       </Modal>
     </div>

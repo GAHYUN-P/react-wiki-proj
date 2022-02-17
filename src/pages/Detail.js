@@ -88,7 +88,6 @@ function Detail(props) {
                 autoComplete="off"
               >
                 <TextField
-                  label="본문"
                   value={desc}
                   readOnly={modify}
                   multiline
@@ -130,24 +129,32 @@ function Detail(props) {
             </>
           )}
         </div>
+        <Stack>
+          <div style={{ display: "flex", justifyContent: "right" }}>
+            <Button onClick={handleModify}>수정</Button>
+            <BasicModal id={id}>삭제</BasicModal>
+          </div>
 
-        <div>
-          <Like id={id} />
-        </div>
-
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              textAlign: "center",
+              flexDirection: "row",
+              fontSize: "20px",
+            }}
+          >
+            <Like id={id} {...post} />
+          </div>
+        </Stack>
         <Stack>
           <CommentWrite id={id} />
         </Stack>
 
-        <div>
+        <div style={{ marginBottom: "40px" }}>
           {_comment.map((e, i) => {
             return <Comments key={i} {...e} />;
           })}
-        </div>
-
-        <div style={{ display: "flex", justifyContent: "right" }}>
-          <Button onClick={handleModify}>수정</Button>
-          <BasicModal id={id}>삭제</BasicModal>
         </div>
       </Stack>
     </>
