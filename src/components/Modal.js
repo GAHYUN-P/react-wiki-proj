@@ -4,6 +4,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import { axiosInstance } from "../config";
+import { useHistory } from "react-router-dom";
 
 const style = {
   position: "absolute",
@@ -19,6 +20,7 @@ const style = {
 
 const BasicModal = (props) => {
   const id = props.id;
+  const history = useHistory();
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -29,9 +31,15 @@ const BasicModal = (props) => {
   };
 
   const handleClick = () => {
-    axiosInstance.post(`/post/${id}`, { password: password }).then((res) => {
-      console.log(res);
-    });
+    axiosInstance
+      .delete(
+        `/post/${id}`,
+        { data: { password: password } },
+        { withCredintial: true }
+      )
+      .then((res) => {
+        history.replace("/");
+      });
   };
 
   return (

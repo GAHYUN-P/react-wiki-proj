@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { actionCreators as commentActions } from "../redux/modules/comment";
+import { useHistory } from "react-router-dom";
 
 function CommentWrite(props) {
-  console.log(props)
-  let id = props.props;
+  let id = props.id;
   const dispatch = useDispatch();
+  const history = useHistory();
   const {
     register,
     handleSubmit,
@@ -20,12 +21,11 @@ function CommentWrite(props) {
     },
   });
 
-  const comment = useSelector((state) => state.comment.list);
-
   const onValid = (data) => {
     dispatch(
       commentActions.addCommentDB(id, data.comment_desc, data.comment_writer)
     );
+    history.go(`/detail/${id}`);
   };
 
   return (

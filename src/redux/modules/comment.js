@@ -11,8 +11,7 @@ const LOADING = "LOADING";
 const setComment = createAction(SET_COMMENT, (comment_list) => ({
   comment_list,
 }));
-const addComment = createAction(ADD_COMMENT, (post_id, comment) => ({
-  post_id,
+const addComment = createAction(ADD_COMMENT, (comment) => ({
   comment,
 }));
 
@@ -32,7 +31,12 @@ const addCommentDB = (post_id, comment, writer) => {
       })
       .then((res) => {
         let time = new Date();
-        dispatch(addComment(comment, writer, time));
+        const _comment = {
+          comment_desc: comment,
+          comment_writer: writer,
+          createdAt: time,
+        };
+        dispatch(addComment(_comment));
       })
       .catch((err) => {
         console.log("bad");
@@ -54,11 +58,12 @@ export default handleActions(
     [SET_COMMENT]: (state, action) =>
       produce(state, (draft) => {
         draft.list = action.payload.comment_list;
+        console.log(draft.list);
       }),
     [ADD_COMMENT]: (state, action) =>
       produce(state, (draft) => {
-        draft.list.push(action.payload);
-        console.log(state);
+        draft.list.concat(action.payload);
+        console.log(draft.list);
       }),
     [LOADING]: (state, action) =>
       produce(state, (draft) => {

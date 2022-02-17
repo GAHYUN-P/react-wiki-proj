@@ -19,6 +19,7 @@ import Stack from "@mui/material/Stack";
 
 function Detail(props) {
   let { id } = useParams();
+
   const _comment = useSelector((state) => state.comment.list);
 
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ function Detail(props) {
   const [desc, setDesc] = useState(post.desc);
   const [writer, setWriter] = useState("");
 
-  const handleModify = (desc) => {
+  const handleModify = () => {
     setModify((prev) => !prev);
     if (modify === false) {
       if (writer.length === 0) {
@@ -59,10 +60,10 @@ function Detail(props) {
     await axiosInstance.get(`/post/${id}`).then((res) => {
       setPost(res.data);
       setDesc(res.data.desc);
-      dispatch(commentActions.setComment(res.data.comments));
       dispatch(postActions.setOnePost(res.data));
+      dispatch(commentActions.setComment(res.data.comments));
     });
-  }, [_comment]);
+  }, []);
 
   return (
     <>
@@ -93,37 +94,35 @@ function Detail(props) {
             </>
           ) : (
             <>
-              <form>
-                <Box
-                  component="form"
-                  sx={{
-                    "& .MuiTextField-root": {
-                      m: 1,
-                      width: "50ch",
-                      marginBottom: "20px",
-                    },
-                  }}
-                  noValidate
-                  autoComplete="off"
-                >
-                  <TextField
-                    onChange={handleChange}
-                    readOnly={modify}
-                    multiline
-                    id="desc"
-                    defaultValue={desc}
-                  ></TextField>
-                </Box>
+              <Box
+                component="form"
+                sx={{
+                  "& .MuiTextField-root": {
+                    m: 1,
+                    width: "60ch",
+                    marginBottom: "20px",
+                  },
+                }}
+                noValidate
+                autoComplete="off"
+              >
                 <TextField
-                  style={{ width: "50ch" }}
-                  id="outlined-basic"
-                  value={writer}
-                  label="writer"
-                  onChange={handleWriterChange}
-                  variant="outlined"
-                  placeholder="contributor"
-                />
-              </form>
+                  onChange={handleChange}
+                  readOnly={modify}
+                  multiline
+                  label="desc"
+                  defaultValue={desc}
+                ></TextField>
+              </Box>
+              <TextField
+                style={{ width: "50ch" }}
+                id="outlined-basic"
+                value={writer}
+                label="writer"
+                onChange={handleWriterChange}
+                variant="outlined"
+                placeholder="contributor"
+              />
             </>
           )}
         </div>
