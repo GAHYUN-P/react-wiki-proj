@@ -88,12 +88,13 @@ const ImagePost = styled.div`
   background-position: center;
 `;
 const ImageBG = styled.div`
-  width: 100%;
-  height: 100%;
+  width: 222px;
+  height: 66px;
   background-image: url("${(props) => props.src}");
-  object-fit: cover;
+  background-size: cover;
+  
   background-position: center;
-  border: 1px solid #ffec99;
+  border: none;
 `;
 
 export default Image;
