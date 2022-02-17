@@ -185,7 +185,7 @@ const GridHover = styled.div`
 
   &:hover{
     background-color: ${(props) => props.BG_c_hover};
-    background-image: url(${(props) => props.BG_i_hover});
+    background-image: url("${(props) => props.BG_i_hover}");
   }
 `;
 
