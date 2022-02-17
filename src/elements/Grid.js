@@ -31,6 +31,9 @@ const Grid = (props) => {
   //children category
   const { children } = props;
 
+  //hover category
+  const { type , BG_c_hover, BG_i_hover } = props;
+
   const styles = {
     B_left,
     B_right,
@@ -58,7 +61,21 @@ const Grid = (props) => {
     top,
     bottom,
     z_index,
+
+    type,
+    BG_c_hover,
+    BG_i_hover,
   };
+
+  if (type === "hover") {
+    return (
+      <React.Fragment>
+        <GridHover onClick={_onClick} {...styles}>
+          {children}
+        </GridHover>
+      </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
@@ -130,6 +147,46 @@ const GridBox = styled.div`
   background-color: ${(props) => props.BG_c};
 
   box-sizing: border-box;
+`;
+ 
+const GridHover = styled.div`
+  //flex
+  ${(props) => (props.is_flex ? `display : flex;` : "")}
+  ${(props) =>
+    props.is_between
+      ? `display: flex; justify-content: space-between; align-items: center;`
+      : ""}
+    align-items : ${(props) => props.align_items};
+  justify-content: ${(props) => props.justify_content};
+  flex-direction: ${(props) => props.flex_direction};
+  flex-wrap: ${(props) => props.flex_wrap};
+  box-shadow: ${(props) => props.box_shadow};
+  //size, position
+  width: ${(props) => props.width};
+  height: ${(props) => props.height};
+  padding: ${(props) => props.padding};
+  margin: ${(props) => props.margin};
+  position: ${(props) => props.position};
+  top: ${(props) => props.top};
+  bottom: ${(props) => props.bottom};
+  z-index: ${(props) => props.z_index};
+  //border
+  border: ${(props) => props.Border};
+  border-left: ${(props) => props.B_left};
+  border-right: ${(props) => props.B_right};
+  border-top: ${(props) => props.B_top};
+  border-bottom: ${(props) => props.B_bottom};
+  border-radius: ${(props) => props.B_radius};
+
+  //background
+  background-color: ${(props) => props.BG_c};
+
+  box-sizing: border-box;
+
+  &:hover{
+    background-color: ${(props) => props.BG_c_hover};
+    background-image: url(${(props) => props.BG_i_hover});
+  }
 `;
 
 export default Grid;
