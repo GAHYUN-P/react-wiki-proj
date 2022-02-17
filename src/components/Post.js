@@ -45,6 +45,9 @@ const Post = (props) => {
         type="hover"
         BG_c_hover = "rgba(137, 207, 240, 1)"
         B_radius = "5px"
+        _onClick = {()=>{
+            window.alert('얼어 붙은 게시물 입니다 :(\n관리자가 내용 확인 후 재업로드 됩니다!')
+        }}
       >
         <Card
           sx={{
@@ -53,6 +56,7 @@ const Post = (props) => {
             margin: 1,
             padding: 1,
           }}
+          style = {{ opacity: 0.5 }}
         >
           <CardContent>
             <Typography
