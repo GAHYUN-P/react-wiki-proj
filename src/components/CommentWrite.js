@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { Stack } from "@mui/material";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import {Grid} from "../elements";
 
 function CommentWrite(props) {
   let id = props.id;
@@ -33,12 +34,14 @@ function CommentWrite(props) {
 
   return (
     <>
+      
       <form>
-        <Stack sx={{ display: "flex", justifyContent: "center" }}>
+        <Grid is_flex padding="0px 100px 0px 100px">
+        <Stack style={{ display: "flex", justifyContent: "center" }}>
           <Box
             component="form"
             sx={{
-              "& .MuiTextField-root": { m: 1, width: "60ch" },
+              "& .MuiTextField-root": { m: 1, width: "51ch" },
             }}
             noValidate
             autoComplete="off"
@@ -47,7 +50,7 @@ function CommentWrite(props) {
               {...register("comment_desc", {
                 required: "내용을 입력해주세요",
                 minLength: {
-                  value: 8,
+                  value: 5,
                   message: "댓글은 최소 10자 이상이어야 합니다.",
                 },
               })}
@@ -62,10 +65,11 @@ function CommentWrite(props) {
           </Box>
         </Stack>
         <Stack>
+          <Grid is_flex>
           <Box
             component="form"
             sx={{
-              "& .MuiTextField-root": { m: 1, width: "40ch" },
+              "& .MuiTextField-root": { m: 1, width: "20ch" },
             }}
             noValidate
             autoComplete="off"
@@ -84,7 +88,10 @@ function CommentWrite(props) {
             </span>
           </Box>
           <Button onClick={handleSubmit(onValid)}>작성</Button>
+          </Grid>
+          
         </Stack>
+        </Grid>
       </form>
     </>
   );

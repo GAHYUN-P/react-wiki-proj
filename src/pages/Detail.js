@@ -48,6 +48,7 @@ function Detail(props) {
         desc: desc,
         contributor: writer,
       });
+      window.location.reload();
     }
   };
 
@@ -136,7 +137,7 @@ function Detail(props) {
           )}
         </div>
         <Stack>
-            <div style={{ display: "flex", justifyContent: "right" }}>
+            <div style={{ position: 'fixed', top: "100px", right:'5%', display: "flex", justifyContent: "right" }}>
               <Button onClick={handleModify}>수정</Button>
               <BasicModal id={id}>삭제</BasicModal>
             </div>
